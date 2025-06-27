@@ -14,7 +14,7 @@ function gameReducer(state, action) {
             newGameButtonDisabled: true,
             inputReadOnly: false,
             guessButtonDisabled: false,
-            feedback: "Secret number generated. Good luck guessing it",
+            feedback: "Start the game now. Good luck guessing it",
             numTrials: 10,
             secretNumber: generateSecretNumber(),
             playerGuess: ""
