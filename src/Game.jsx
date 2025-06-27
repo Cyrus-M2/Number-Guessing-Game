@@ -103,7 +103,7 @@ function Game() {
             {state.feedback && <h2 className="game-result game-guide">{state.feedback}</h2>}
             <button type="button" disabled={state.guessButtonDisabled} onClick={() => dispatch({
                 type: 'PLAYER_GUESS', payload: state.playerGuess})}>
-                GUess
+                Guess Number
             </button>
         </form>
     </div>
