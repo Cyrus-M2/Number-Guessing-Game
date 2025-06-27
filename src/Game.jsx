@@ -28,7 +28,7 @@ function funcReducer(state, action) {
             newGameButtonDisabled: false,
             inputReadOnly: true,
             guessButtonDisabled: true,
-            feedback: `You lost. The secret number was ${secretNumber}`,
+            feedback: `You lost. The secret number was ${state.secretNumber}`,
             numTrials: numTrials
         } 
     }
