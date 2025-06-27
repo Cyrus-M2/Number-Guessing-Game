@@ -47,7 +47,6 @@ function gameReducer(state, action) {
     if (playerGuess > state.secretNumber){
             return {
             ...state,
-            // guessButtonDisabled: false,
             feedback: `${playerGuess} is greater than the secret number`,
             numTrials: numTrials,
         }
@@ -56,7 +55,6 @@ function gameReducer(state, action) {
         if (playerGuess < state.secretNumber){
             return {
             ...state,
-            // guessButtonDisabled: false,
             feedback: `${playerGuess} is less than the secret number`,
             numTrials: numTrials,
         }
@@ -65,7 +63,6 @@ function gameReducer(state, action) {
 }
 
 function Game() {
-    // const [playerGuess, setPlayerGuess] = useState("");
     const [state, dispatch] = useReducer(gameReducer, {
         newGameButtonDisabled: false,
         inputReadOnly: true,
@@ -82,7 +79,6 @@ function Game() {
                 Guess a number between 0 and 100
             </h2>
             <button disabled={state.newGameButtonDisabled} onClick={() => {
-                // setPlayerGuess("")
                 dispatch({type: "NEW_GAME"})
                 }}>
                 new game
