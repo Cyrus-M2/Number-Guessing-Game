@@ -1,0 +1,96 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #d8d3d3;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.game-container {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.game-header h2 {
+  font-size: 1.4rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.game-header button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.game-header button:disabled {
+  background-color: #a5d6a7;
+  cursor: not-allowed;
+}
+
+.game-header button:hover:not(:disabled) {
+  background-color: #388e3c;
+}
+
+.game-form {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.game-form input[type="number"] {
+  padding: 0.6rem;
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.game-form button {
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.game-form button:disabled {
+  background-color: #90caf9;
+  cursor: not-allowed;
+}
+
+.game-form button:hover:not(:disabled) {
+  background-color: #1976d2;
+}
+
+.trials-count {
+  font-weight: bold;
+  color: #ff9800;
+}
+
+.game-result {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #e91e63;
+}
+
+.game-guide {
+  margin: 0.5rem 0;
+}

@@ -1,0 +1,113 @@
+import { useReducer } from "react"
+
+function generateSecretNumber() {
+    return Math.trunc(Math.random() * 100)
+}
+
+function gameReducer(state, action) {
+    if (action.type === "UPDATE_PLAYER_GUESS"){
+        return {...state, playerGuess: action.payload}
+    }
+    if (action.type === "NEW_GAME") {
+        return {
+            ...state,
+            newGameButtonDisabled: true,
+            inputReadOnly: false,
+            guessButtonDisabled: false,
+            feedback: "Secret number generated. Good luck guessing it",
+            numTrials: 10,
+            secretNumber: generateSecretNumber(),
+            playerGuess: ""
+        }
+    }
+
+    const numTrials = state.numTrials - 1;
+    if (numTrials === 0) {
+        return {
+            ...state,
+            newGameButtonDisabled: false,
+            inputReadOnly: true,
+            guessButtonDisabled: true,
+            feedback: `You lost. The secret number was ${secretNumber}`,
+            numTrials: numTrials
+        } 
+    }
+
+    if (action.type === 'PLAYER_GUESS') {
+        const playerGuess = Number(action.payload)
+        if (playerGuess === state.secretNumber) {
+            return {
+            ...state,
+            newGameButtonDisabled: false,
+            inputReadOnly: true,
+            guessButtonDisabled: true,
+            feedback: `You win. Your score is ${state.numTrials * 10}%`,
+        }
+        }
+    if (playerGuess > state.secretNumber){
+            return {
+            ...state,
+            // guessButtonDisabled: false,
+            feedback: `${playerGuess} is greater than the secret number`,
+            numTrials: numTrials,
+        }
+    }   
+    
+        if (playerGuess < state.secretNumber){
+            return {
+            ...state,
+            // guessButtonDisabled: false,
+            feedback: `${playerGuess} is less than the secret number`,
+            numTrials: numTrials,
+        }
+    }  
+    }
+}
+
+function Game() {
+    // const [playerGuess, setPlayerGuess] = useState("");
+    const [state, dispatch] = useReducer(gameReducer, {
+        newGameButtonDisabled: false,
+        inputReadOnly: true,
+        guessButtonDisabled: true,
+        feedback: null,
+        numTrials: 10,
+        secretNumber: null,
+        playerGuess: ""
+    });
+  return (
+    <div className="game-container">
+        <header className="game-header">
+            <h2 className="game-main-instruction">
+                Guess a number between 0 and 100
+            </h2>
+            <button disabled={state.newGameButtonDisabled} onClick={() => {
+                // setPlayerGuess("")
+                dispatch({type: "NEW_GAME"})
+                }}>
+                new game
+            </button>
+        </header>
+
+        <form action="" className="game-form">
+            <h2 className="trials-count game-guide">
+                {state.numTrials} trials remaining
+            </h2>
+            <input
+            type="number"
+            placeholder="00"
+            readOnly={state.inputReadOnly}
+            value={state.playerGuess}
+            onChange={(e) => dispatch({ type: "UPDATE_PLAYER_GUESS", payload: e.target.value})}
+            />
+            {state.feedback && <h2 className="game-result game-guide">{state.feedback}</h2>}
+            <button type="button" disabled={state.guessButtonDisabled} onClick={() => dispatch({
+                type: 'PLAYER_GUESS', payload: state.playerGuess})}>
+                GUess
+            </button>
+        </form>
+    </div>
+  )
+}
+
+export default Game
