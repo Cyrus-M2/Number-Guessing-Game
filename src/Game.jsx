@@ -4,7 +4,7 @@ function generatingSecretNumber() {
     return Math.trunc(Math.random() * 100)
 }
 
-function gameReducer(state, action) {
+function funcGame(state, action) {
     if (action.type === "UPDATE_PLAYER_GUESS"){
         return {...state, playerGuess: action.payload}
     }
@@ -63,7 +63,7 @@ function gameReducer(state, action) {
 }
 
 function Game() {
-    const [state, dispatch] = useReducer(gameReducer, {
+    const [state, dispatch] = useReducer(funcGame, {
         newGameButtonDisabled: false,
         inputReadOnly: true,
         guessButtonDisabled: true,
